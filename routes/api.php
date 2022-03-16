@@ -17,13 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function() {
 
     Route::post('login', [\App\Http\Controllers\API\UserController::class, 'login'])->name('login');
-
-
     Route::group(['middleware' => 'auth:api'], function () {
         Route::post('register', [\App\Http\Controllers\API\UserController::class, 'register'])->name('register');
         Route::post('getRegisteredUser', 'API\UserController@getRegisteredUser');
     });
-
-
-
 });
