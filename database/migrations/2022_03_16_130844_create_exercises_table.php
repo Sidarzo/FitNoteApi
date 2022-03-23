@@ -16,12 +16,12 @@ class CreateExercisesTable extends Migration
         Schema::create('exercises', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('duration');
-            $table->string('description');
-            $table->integer('weight');
-            $table->integer('repetition');
-            $table->integer('serie');
-            $table->integer('restDuration');
+            $table->integer('duration')->nullable();
+            $table->string('description')->nullable();
+            $table->integer('weight')->nullable();
+            $table->integer('repetition')->nullable();
+            $table->integer('serie')->nullable();
+            $table->integer('restDuration')->nullable();
             $table->string('type');
             $table->unsignedBigInteger('program_id');
             $table->foreign('program_id')->references('id')->on('programs');
