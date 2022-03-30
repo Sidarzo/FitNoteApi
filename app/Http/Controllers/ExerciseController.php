@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreExerciseRequest;
 use App\Http\Requests\UpdateExerciseRequest;
 use App\Models\Exercise;
+use Illuminate\Http\Request;
 
 class ExerciseController extends Controller
 {
@@ -15,7 +16,7 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        //
+        return Exercise::all();
     }
 
     /**
@@ -23,9 +24,21 @@ class ExerciseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $values = $request->all();
+
+         Exercise::create([
+            'title'=>$values['title'],
+            'duration'=>$values['duration'],
+            'description'=>$values['description'],
+            'weight'=>$values['weight'],
+            'repetition'=>$values['repetition'],
+            'serie'=>$values['serie'],
+            'restDuration'=>$values['restDuration'],
+            'type'=>$values['type'],
+            'program_id'=>$values['program_id']
+        ]);
     }
 
     /**
@@ -83,4 +96,11 @@ class ExerciseController extends Controller
     {
         //
     }
+
+    public function getExercisesWithProgramId($id){
+        $exercises = Exercise::where('program_id',$id)->get();
+
+        return $exercises;
+    }
+    
 }

@@ -9,6 +9,8 @@ class Program extends Model
 {
     use HasFactory;
 
+    public $fillable = ['name','user_id'];
+
     public function exercices(){
         return $this->hasMany(Exercise::class);
     }

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProgramRequest;
 use App\Http\Requests\UpdateProgramRequest;
 use App\Models\Program;
+use Illuminate\Http\Request;
+
 
 class ProgramController extends Controller
 {
@@ -23,9 +25,12 @@ class ProgramController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id, Request $request)
     {
-        //
+        Program::create([
+            'name' => $request->all()['name'],
+            'user_id'=> $id
+        ]);
     }
 
     /**
@@ -82,5 +87,14 @@ class ProgramController extends Controller
     public function destroy(Program $program)
     {
         //
+    }
+
+    public function programWithUserId($id){
+        return Program::where('user_id',$id)->get();
+    }
+
+    public function delete($id){
+       $program = Program::find($id);
+       return $program->delete();
     }
 }
