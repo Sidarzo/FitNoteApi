@@ -24,7 +24,7 @@ class CreateExercisesTable extends Migration
             $table->integer('restDuration')->nullable();
             $table->string('type');
             $table->unsignedBigInteger('program_id');
-            $table->foreign('program_id')->references('id')->on('programs');
+            $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
             $table->timestamps();
         });
     }
