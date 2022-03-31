@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProgramRequest;
 use App\Http\Requests\UpdateProgramRequest;
 use App\Models\Program;
 use Illuminate\Http\Request;
+use Validator;
 
 
 class ProgramController extends Controller
@@ -73,9 +74,16 @@ class ProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProgramRequest $request, Program $program)
+    public function update(Request $request,$id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 401);
+        }
+        $name = $request->all()['name'];
+        Program::where('id',$id)->update(['name'=>$name]);
     }
 
     /**
@@ -95,6 +103,7 @@ class ProgramController extends Controller
 
     public function delete($id){
        $program = Program::find($id);
-       return $program->delete();
+       $program->delete();
+       return $program;
     }
 }

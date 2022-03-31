@@ -27,5 +27,7 @@ Route::prefix('v1')->group(function() {
         Route::get('deleteProgram/{id}',[\App\Http\Controllers\ProgramController::class,'delete'])->name('deleteProgram');
         Route::get('getExercisesWithProgramId/{id}',[\App\Http\Controllers\ExerciseController::class, 'getExercisesWithProgramId'])->name('getExercisesWithProgramId');
         Route::post('createExercise/',[\App\Http\Controllers\ExerciseController::class,'create'])->name('createExercise');
+
+        Route::post('updateprogram/{id}',[\App\Http\Controllers\ProgramController::class,'update'])->name('updateProgram');
     });
 });
