@@ -24,7 +24,6 @@ class UserController extends Controller
             $user = Auth::user();
             $success['token'] =  $user->createToken('MyApp')->accessToken;
 
-
             return response()->json(['success' => $success,'user'=>$user], $this->successStatus);
         }
         else{
@@ -67,6 +66,11 @@ class UserController extends Controller
 
     public function index()
     {
-        return User::all();
+        return User::with('programs')->get();
+    }
+
+    public function show($id)
+    {
+        return User::where('id',$id)->with('programs')->get();
     }
 }

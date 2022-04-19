@@ -15,7 +15,7 @@ class ExerciseController extends Controller
      */
     public function index()
     {
-        //
+        return Exercise::all();
     }
 
     /**
@@ -45,9 +45,9 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function show(Exercise $exercise)
+    public function show($id)
     {
-        //
+        return Exercise::where('id',$id)->get();
     }
 
     /**
@@ -79,8 +79,21 @@ class ExerciseController extends Controller
      * @param  \App\Models\Exercise  $exercise
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Exercise $exercise)
+    public function destroy($id)
     {
-        //
+
+        $exercise = Exercise::find('id',$id)->programs()->detach('exercise_id',$id);
+        return $exercise->delete();
+    }
+
+    public function getExerciseByProgramId($programId)
+    {
+        $result = [];
+        $exercises = Exercise::all();
+        foreach($exercises->programs as $exercise)
+        {
+            $result += $exercise->programs == $programId;
+        }
+        return $result;
     }
 }

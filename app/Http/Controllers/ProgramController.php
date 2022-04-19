@@ -11,11 +11,12 @@ class ProgramController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Program[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        //return Program::all();
+        return Program::with('user','exercises')->get();
     }
 
     /**
@@ -42,12 +43,12 @@ class ProgramController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Program  $program
+     * @param int
      * @return \Illuminate\Http\Response
      */
-    public function show(Program $program)
+    public function show($id)
     {
-        //
+        return Program::where('id',$id)->with('exercises','user')->get();
     }
 
     /**
@@ -82,5 +83,24 @@ class ProgramController extends Controller
     public function destroy(Program $program)
     {
         //
+    }
+
+    public function getProgramByUser($userId)
+    {
+        return Program::where('user_id',$userId)->get();
+    }
+
+    public function getProgramByExerciseId($exerciseId)
+    {
+        $result = [];
+        $programs = Program::all()->with('exercises');
+        foreach ($programs->exercises as $program)
+        {
+            if($program->id == $exerciseId)
+            {
+                $result += $program;
+            }
+        }
+        return $result;
     }
 }

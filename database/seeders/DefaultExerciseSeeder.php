@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Exercise;
+use App\Models\DefaultExercise;
 use Illuminate\Database\Seeder;
 
-class ExerciseSeeder extends Seeder
+class DefaultExerciseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class ExerciseSeeder extends Seeder
      */
     public function run()
     {
-        Exercise::create([
+        DefaultExercise::create([
             'title'=>'Développé couché',
             'description'=>'Travail des pectoraux, triceps',
             'weight'=>75,
@@ -24,7 +24,7 @@ class ExerciseSeeder extends Seeder
 
         ]);
 
-        Exercise::create([
+        DefaultExercise::create([
             'title'=>'Papillon',
             'description'=>'Travail des pectoraux',
             'weight'=>35,
@@ -33,7 +33,7 @@ class ExerciseSeeder extends Seeder
             'type'=>'muscu',
 
         ]);
-        Exercise::create([
+        DefaultExercise::create([
             'title'=>'Traction',
             'description'=>'Travail des trapèzes, biceps, et du dos',
             'repetition'=>10,
@@ -42,7 +42,7 @@ class ExerciseSeeder extends Seeder
             'type'=>'muscu',
         ]);
 
-        Exercise::create([
+        DefaultExercise::create([
             'title'=>'Abdos crunch',
             'description'=>'Travail des abdos',
             'repetition'=>40,
@@ -51,7 +51,7 @@ class ExerciseSeeder extends Seeder
             'type'=>'muscu',
         ]);
 
-        Exercise::create([
+        DefaultExercise::create([
             'title'=>'Traction',
             'description'=>'Travail des trapèzes, biceps, et du dos',
             'repetition'=>10,
@@ -60,7 +60,7 @@ class ExerciseSeeder extends Seeder
             'type'=>'muscu',
         ]);
 
-        Exercise::create([
+        DefaultExercise::create([
             'title'=>'Jumping Jack',
             'description'=>'Brule graisse',
             'duration'=>30,

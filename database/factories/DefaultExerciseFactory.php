@@ -2,11 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Exercise;
-use App\Models\Program;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class ExerciseFactory extends Factory
+class DefaultExerciseFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -16,7 +14,7 @@ class ExerciseFactory extends Factory
     public function definition()
     {
         return [
-
+            //
         ];
     }
 }

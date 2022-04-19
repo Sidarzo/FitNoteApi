@@ -9,7 +9,12 @@ class Program extends Model
 {
     use HasFactory;
 
-    public function exercices(){
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+    public function exercises(){
         return $this->hasMany(Exercise::class);
     }
 }
