@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTrainingSessionRequest;
 use App\Http\Requests\UpdateTrainingSessionRequest;
 use App\Models\TrainingSession;
+use Illuminate\Http\Request;
 
 class TrainingSessionController extends Controller
 {
@@ -23,9 +24,14 @@ class TrainingSessionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $values = $request->all();
+
+        TrainingSession::create([
+            'dateSession'=>$values['dateSession'],
+            'program_id'=>$values['program_id']
+        ]);
     }
 
     /**

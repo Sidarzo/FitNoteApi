@@ -17,7 +17,7 @@ class CreateTrainingSessionsTable extends Migration
             $table->id();
             $table->date('dateSession');
             $table->unsignedBigInteger('program_id');
-            $table->foreign('program_id')->references('id')->on('programs');
+            $table->foreign('program_id')->references('id')->on('programs')->onDelete('cascade');
             $table->timestamps();
         });
     }
